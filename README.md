@@ -1,4 +1,4 @@
-# gestao-vendas-creche
+# Gestão de Vagas em Creche - Projeto Integrador - UTFPR
 O PI é relacionado ao desenvolvimento de um novo sistema para gestão de vagas em creches.
 
 # FRONTEND
@@ -15,4 +15,4 @@ O PI é relacionado ao desenvolvimento de um novo sistema para gestão de vagas 
 # BANCO DE DADO
 
 - Postgres para persistencia de dados relacionais.
-- Mongo para imagens, outros ( NOSQL ).
+- Mongo para imagens, outros ( NOSQL ).ls
