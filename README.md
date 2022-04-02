@@ -12,7 +12,7 @@ O PI é relacionado ao desenvolvimento de um novo sistema para gestão de vagas 
 - A principio como ferramenta será utilizado o Spring com Java ( Sujeito a alteração ).
 - Modelo MVC.
 
-# BANCO DE DADO
+# BANCO DE DADOS
 
 - Postgres para persistencia de dados relacionais.
-- Mongo para imagens, outros ( NOSQL ).ls
+- Mongo para imagens, outros ( NOSQL )
