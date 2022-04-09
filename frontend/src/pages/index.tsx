@@ -1,17 +1,16 @@
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { Footer } from '../components/Footer'
+import { Box } from '@chakra-ui/react'
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-    </Main>
+import Navbar from '../components/Nav/Navbar'
+import Hero from '../components/Hero/Hero'
 
-    <Footer>
-    </Footer>
-  </Container>
-)
 
-export default Index
+const Index = () => {
+  return (
+    <Box>
+      <Navbar />
+      <Hero />
+    </Box>
+  )
+}
+
+export default Index;
