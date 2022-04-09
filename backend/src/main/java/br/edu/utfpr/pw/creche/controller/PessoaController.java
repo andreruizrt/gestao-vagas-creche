@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import br.edu.utfpr.pw.creche.model.Pessoa;
 import br.edu.utfpr.pw.creche.repository.PessoaRepository;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
