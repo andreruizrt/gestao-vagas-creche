@@ -21,7 +21,7 @@ public class PessoaController {
     private PessoaRepository pessoaRepository;
 
     @GetMapping("/pessoas")
-    public ResponseEntity<List<Pessoa>> getAllpessoas() {
+    public ResponseEntity<List<Pessoa>> getAllPessoas() {
         try {
 
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
