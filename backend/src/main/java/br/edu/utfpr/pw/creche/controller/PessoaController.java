@@ -50,32 +50,41 @@ public class PessoaController {
       }
     }
 
-    @PostMapping
+    @PostMapping("/pessoas")
     public ResponseEntity<Pessoa> createPessoa( @RequestBody Pessoa pessoa ) {
         try {
-			Pessoa _pessoa = pessoaRepository.save( new Pessoa( pessoa.getNome(), pessoa.getCpf(), pessoa.getRg(), pessoa.getEmail(), pessoa.getTelefone(), pessoa.getUrl()));
+			Pessoa createdPessoa = pessoaRepository.save( 
+                new Pessoa( 
+                    pessoa.getNome(),
+                    pessoa.getCpf(),
+                    pessoa.getRg(),
+                    pessoa.getEmail(),
+                    pessoa.getTelefone(),
+                    pessoa.getUrl()
+                )
+            );
 			
-            return new ResponseEntity<>( _pessoa, HttpStatus.CREATED );
+            return new ResponseEntity<>( createdPessoa, HttpStatus.CREATED );
 		} catch ( Exception e ) {
 			return new ResponseEntity<>( null, HttpStatus.INTERNAL_SERVER_ERROR );
 		}
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/pessoas/{id}")
     public ResponseEntity<Pessoa> updatePessoa( @PathVariable Long id, @RequestBody Pessoa pessoa ) {
 
         Optional<Pessoa> pessoaData = pessoaRepository.findById( id );
         
         if (pessoaData.isPresent()) {
-            Pessoa _pessoa = pessoaData.get();
-            _pessoa.setNome( pessoa.getNome() );
-            _pessoa.setTelefone( pessoa.getTelefone() );
-            _pessoa.setEmail( pessoa.getEmail() );
-            _pessoa.setCpf( pessoa.getCpf() );
-            _pessoa.setRg( pessoa.getRg() );
-            _pessoa.setUrl( pessoa.getUrl() );
+            Pessoa updatedPessoa = pessoaData.get();
+            updatedPessoa.setNome( pessoa.getNome() );
+            updatedPessoa.setTelefone( pessoa.getTelefone() );
+            updatedPessoa.setEmail( pessoa.getEmail() );
+            updatedPessoa.setCpf( pessoa.getCpf() );
+            updatedPessoa.setRg( pessoa.getRg() );
+            updatedPessoa.setUrl( pessoa.getUrl() );
         
-            return new ResponseEntity<>(pessoaRepository.save(_pessoa), HttpStatus.OK);
+            return new ResponseEntity<>(pessoaRepository.save(updatedPessoa), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
