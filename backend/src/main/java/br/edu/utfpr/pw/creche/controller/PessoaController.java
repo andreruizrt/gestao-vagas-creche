@@ -14,7 +14,7 @@ import br.edu.utfpr.pw.creche.repository.PessoaRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("/api")
 public class PessoaController {
 
     @Autowired
