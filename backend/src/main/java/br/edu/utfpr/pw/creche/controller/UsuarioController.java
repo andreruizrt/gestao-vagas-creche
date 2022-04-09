@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.utfpr.pw.creche.model.Usuario;
 import br.edu.utfpr.pw.creche.repository.UsuarioRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -54,7 +54,7 @@ public class UsuarioController {
     }
   }
 
-  @GetMapping("/usuarios/{id}")
+  @GetMapping("/usuario/{id}")
   public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -66,7 +66,7 @@ public class UsuarioController {
     }
   }
   
-  @PostMapping("/usuarios")
+  @PostMapping("/usuario")
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 
     try {
@@ -78,7 +78,7 @@ public class UsuarioController {
 
   }
 
-  @PutMapping("/usuarios/{id}")
+  @PutMapping("/usuario/{id}")
   public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -97,7 +97,7 @@ public class UsuarioController {
 
   }
   
-  @DeleteMapping("/usuarios/{id}")
+  @DeleteMapping("/usuario/{id}")
   public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") Long id) {
 
     try {
@@ -122,5 +122,4 @@ public class UsuarioController {
     }
 
   }
-
 }
