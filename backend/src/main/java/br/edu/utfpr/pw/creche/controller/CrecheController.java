@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import br.edu.utfpr.pw.creche.model.Creche;
 import br.edu.utfpr.pw.creche.repository.CrecheRepository;
 
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class CrecheController {
