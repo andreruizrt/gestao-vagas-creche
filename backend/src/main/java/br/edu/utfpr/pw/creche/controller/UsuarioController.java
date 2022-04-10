@@ -28,18 +28,13 @@ public class UsuarioController {
 
   @Autowired
   private UsuarioRepository usuarioRepository;
-  
+
   @GetMapping("/usuarios")
-  public ResponseEntity<List<Usuario>> getAllUsuarios(@RequestParam(required = false) String username) {
+  public ResponseEntity<List<Usuario>> getAllUsuarios() {
     try {
 
       List<Usuario> usuarios = new ArrayList<Usuario>();
-      
-      if (username == null) {
-        usuarioRepository.findAll().forEach(usuarios::add);
-      } else {
-        usuarioRepository.findByUsername(username).forEach(usuarios::add);
-      }
+      usuarioRepository.findAll().forEach(usuarios::add);
 
       if (usuarios.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -58,22 +53,23 @@ public class UsuarioController {
   public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
-    
+
     if (usuarioData.isPresent()) {
       return new ResponseEntity<>(usuarioData.get(), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
-  
+
   @PostMapping("/usuarios")
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 
     try {
-      Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), false));
-      return new ResponseEntity<>( _usuario, HttpStatus.CREATED );
+      Usuario _usuario = usuarioRepository
+          .save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), false));
+      return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
     } catch (Exception e) {
-      return new ResponseEntity<>( null, HttpStatus.INTERNAL_SERVER_ERROR );
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
   }
@@ -82,7 +78,7 @@ public class UsuarioController {
   public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
-    
+
     if (usuarioData.isPresent()) {
       Usuario _usuario = usuarioData.get();
       _usuario.setUsername(usuario.getUsername());
@@ -96,7 +92,7 @@ public class UsuarioController {
     }
 
   }
-  
+
   @DeleteMapping("/usuarios/{id}")
   public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") Long id) {
 
