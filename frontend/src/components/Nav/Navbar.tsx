@@ -14,8 +14,8 @@ import {
   CloseIcon,
 } from '@chakra-ui/icons';
 import CreshowIcon from './CreshowIcon';
-import LoginNavBar from '../Autentication/LoginNavBar';
-import { UserNavLink } from '../Autentication/LoginHamburger';
+import LoginNavBar from '../Auth/LoginNavBar';
+import { UserNavLink } from '../Auth/LoginHamburger';
 
 const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Usuarios', link: "/dashboard" }, { option: 'Sobre nós', link: "/dashboard" }];
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
