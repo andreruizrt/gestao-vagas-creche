@@ -23,23 +23,22 @@ const LoginSchema = Yup.object().shape({
         .required('requerido')
 });
 
-const submitLogin = async (values: any) => {
-    const response = await fetch('http://locahost:8080/api/usuarios', {
-        method: 'POST',
-        body: JSON.stringify({
-            username: 'claudio',
-            password: '123456',
-            email: 'a@gamil.com',
-            admin: false
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const data = await response.json();
-    console.log(data);
+const submitLogin = async (values) => {
+    try {
+        const response = await fetch('http://locahost:8080/api/usuarios', {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        console.log(data);
 
-    return data;
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const LoginForm = () => (
@@ -48,7 +47,6 @@ const LoginForm = () => (
             initialValues={{}}
             validationSchema={LoginSchema}
             onSubmit={(values, actions) => {
-                alert(JSON.stringify(values, null, 2));
                 submitLogin(values);
                 actions.setSubmitting(true);
             }}
