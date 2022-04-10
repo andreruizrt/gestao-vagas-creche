@@ -1,7 +1,7 @@
 import LoggedUserMenuOptions from './LoggedUserMenuOptions';
 import LoginCadastrarButtons from './LoginCadatrarButtons';
 
-const isUserLogged = true;
+const isUserLogged = false;
 
 const LoginNavBar = () => (
   <>
