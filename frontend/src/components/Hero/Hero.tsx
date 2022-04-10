@@ -11,35 +11,23 @@ import {
 
 const Hero = () => {
   return (
-    <Container maxW={'5xl'}>
+    <Container bg={'gray.300'} maxW={'5xl'}>
       <Stack
         textAlign={'center'}
         align={'center'}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}>
-        <Heading
-          fontWeight={600}
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-          lineHeight={'110%'}>
-          Meeting scheduling{' '}
-          <Text as={'span'} color={'orange.400'}>
-            made easy
-          </Text>
-        </Heading>
-        <Text color={'gray.500'} maxW={'3xl'}>
-          exemplo de texto para o call to action
-        </Text>
         <Stack spacing={6} direction={'row'}>
           <Button
             rounded={'full'}
             px={6}
-            colorScheme={'orange'}
-            bg={'orange.400'}
-            _hover={{ bg: 'orange.500' }}>
-            Get started
+            colorScheme={'blue'}
+            bg={'blue.400'}
+            _hover={{ bg: 'blue.500' }}>
+            Comece agora
           </Button>
           <Button rounded={'full'} px={6}>
-            Learn more
+            Aprenda mais
           </Button>
         </Stack>
         <Flex w={'full'}>

@@ -19,11 +19,11 @@ const cadastroSchema = Yup.object().shape({
     username: Yup.string()
         .min(2, 'Muito curto!')
         .max(50, 'Muito longo!')
-        .required('requerido'),
+        .required('Requerido'),
     password: Yup.string()
         .min(2, 'Muito curto!')
         .max(50, 'Muito longo!')
-        .required('requerido'),
+        .required('Requerido'),
     email: Yup.string().email('Email inválido').required('Requerido'),
 });
 
@@ -34,12 +34,9 @@ const submitCadastro = async (values: any) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                values,
-                admin: false
-            })
+            body: JSON.stringify(values)
         });
-        
+
         const data = await response.json();
         console.log(data);
 
@@ -53,18 +50,21 @@ const CadastroForm = () => (
     <Box>
         <Formik
             initialValues={{}}
-            validationSchema={cadastroSchema}
+            // validationSchema={cadastroSchema}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
+                    actions.setSubmitting(true);
                     submitCadastro(values)
-                    actions.setSubmitting(true)
-                    actions.submitForm
-                }, 1000)
+                        .then(() => {
+                            actions.setSubmitting(false);
+                            actions.resetForm();
+                        })
+                }, 1000);
             }}
         >
             {(props) => (
                 <Form>
-                    <Box paddingLeft={2}>
+                    <Box>
                         <Field name='username'>
                             {({ field, form }) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name}>
@@ -106,14 +106,18 @@ const CadastroForm = () => (
                             </Link>
                         </HStack>
                     </Box>
-                    <Button
-                        mt={4}
-                        colorScheme='blue'
-                        isLoading={props.isSubmitting}
-                        type='submit'
-                    >
-                        Cadastrar
-                    </Button>
+                    <HStack alignItems='end' spacing={2} p={1} mt={2}>
+                        <Button colorScheme='teal'>
+                            Cancelar
+                        </Button>
+                        <Button
+                            colorScheme='blue'
+                            isLoading={props.isSubmitting}
+                            type='submit'
+                        >
+                            Cadastrar
+                        </Button>
+                    </HStack>
                 </Form>
             )}
         </Formik>

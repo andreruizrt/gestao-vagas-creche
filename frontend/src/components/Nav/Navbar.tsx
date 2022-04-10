@@ -9,23 +9,27 @@ import {
   useColorModeValue,
   Stack
 } from '@chakra-ui/react';
+
 import {
   HamburgerIcon,
   CloseIcon,
 } from '@chakra-ui/icons';
 import CreshowIcon from './CreshowIcon';
+
 import LoginNavBar from '../Auth/LoginNavBar';
 import { UserNavLink } from '../Auth/LoginHamburger';
 
-const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Usuarios', link: "/dashboard" }, { option: 'Sobre nós', link: "/dashboard" }];
+const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Área dos Pais', link: "/pais" }, { option: 'Sobre nós', link: "/about" }];
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
 
 const NavLink = ({ link, children }: { link: string, children: ReactNode }) => (
   <Link
+    color="blue.500"
     px={2}
-    py={1}
+    py={2}
     rounded={'md'}
     _hover={{
+      color: 'blue.800',
       textDecoration: 'none',
       bg: useColorModeValue('blue.200', 'blue.700'),
     }}
@@ -58,9 +62,9 @@ const Navbar = () => {
             ))}
           </HStack>
         </HStack>
-        <Flex alignItems={'center'}>
-          <LoginNavBar />
-        </Flex>
+          <Flex align={'center'}>
+            <LoginNavBar />
+          </Flex>
       </Flex>
 
       {

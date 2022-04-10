@@ -22,7 +22,7 @@ const CadastrarModal = () => {
 
     return (
         <>
-            <Button colorScheme="blue" mt={4} onClick={onOpen}>
+            <Button colorScheme="ghost" color="blue.500" mt={1} onClick={onOpen}>
                 Cadastrar
             </Button>
             <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -30,15 +30,9 @@ const CadastrarModal = () => {
                 <ModalContent>
                     <ModalHeader>Cadastrar</ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody>
+                    <ModalBody marginBottom={30}>
                         <CadastroForm />
                     </ModalBody>
-                    <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
-                            Cancelar
-                        </Button>
-                        <Button colorScheme='blue' type="submit">Cadastrar</Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
@@ -51,7 +45,7 @@ const LoginModal = () => {
 
     return (
         <>
-            <Button colorScheme='blue' mt={4} onClick={onOpen}>
+            <Button colorScheme='blue' mt={1} onClick={onOpen}>
                 Login
             </Button>
             <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -62,10 +56,6 @@ const LoginModal = () => {
                     <ModalBody>
                         <LoginForm />
                     </ModalBody>
-                    <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>Cancelar</Button>
-                        <Button colorScheme='blue' type="submit">Login</Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
@@ -75,8 +65,8 @@ const LoginModal = () => {
 
 const LoginCadastrarButtons = () => (
     <ButtonGroup>
-        <LoginModal />
         <CadastrarModal />
+        <LoginModal />
     </ButtonGroup>
 );
 

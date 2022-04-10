@@ -1,5 +1,5 @@
 import Navbar from '../../../components/Nav/Navbar'
-import { Box, Heading, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Center, Heading, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 
 const Usuarios = ({ usuarios }) => {
   const usuarioList = usuarios.map(usuario => {
@@ -13,23 +13,32 @@ const Usuarios = ({ usuarios }) => {
   return (
     <Box>
       <Navbar />
-      <Box>
-        <Heading>
-          Lista de Usuários
-        </Heading>
+      <Box m={10}>
+        <Center>
+          <Heading size={'sm'}>Controle de Usuários</Heading>
+        </Center>
       </Box>
-      <Table variant='simple'>
-        <Thead>
-          <Tr>
-            <Th>Username</Th>
-            <Th>Senha</Th>
-            <Th>Email</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {usuarioList}
-        </Tbody>
-      </Table>
+      <Box mx={100}>
+        <Table
+          p={4}
+          m={4}
+          marginLeft={'auto'}
+          marginRight={30}
+          borderRadius={10}
+          borderWidth={1}
+          variant='striped'>
+          <Thead>
+            <Tr>
+              <Th>Usuário</Th>
+              <Th>Senha</Th>
+              <Th>Email</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {usuarioList}
+          </Tbody>
+        </Table>
+      </Box>
     </Box>
   )
 }
