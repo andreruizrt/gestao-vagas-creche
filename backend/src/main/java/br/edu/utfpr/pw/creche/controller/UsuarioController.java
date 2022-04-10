@@ -54,7 +54,7 @@ public class UsuarioController {
     }
   }
 
-  @GetMapping("/usuario/{id}")
+  @GetMapping("/usuarios/{id}")
   public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -66,11 +66,11 @@ public class UsuarioController {
     }
   }
   
-  @PostMapping("/usuario")
+  @PostMapping("/usuarios")
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 
     try {
-      Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail() ,true));
+      Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), false));
       return new ResponseEntity<>( _usuario, HttpStatus.CREATED );
     } catch (Exception e) {
       return new ResponseEntity<>( null, HttpStatus.INTERNAL_SERVER_ERROR );
@@ -78,7 +78,7 @@ public class UsuarioController {
 
   }
 
-  @PutMapping("/usuario/{id}")
+  @PutMapping("/usuarios/{id}")
   public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -97,7 +97,7 @@ public class UsuarioController {
 
   }
   
-  @DeleteMapping("/usuario/{id}")
+  @DeleteMapping("/usuarios/{id}")
   public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") Long id) {
 
     try {
