@@ -25,7 +25,7 @@ const LoginSchema = Yup.object().shape({
 
 const submitLogin = async (values: any) => {
     const response = await fetch('http://locahost:8080/api/usuarios', {
-        method: 'DELETE',
+        method: 'POST',
         body: JSON.stringify({
             username: 'claudio',
             password: '123456',
