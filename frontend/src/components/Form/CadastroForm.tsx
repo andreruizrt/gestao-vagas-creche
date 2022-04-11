@@ -29,6 +29,8 @@ const cadastroSchema = Yup.object().shape({
 
 const submitCadastro = async (values: any) => {
     try {
+       
+        delete values['toggle'];
         const response = await fetch('http://localhost:8080/api/usuarios', {
             method: 'POST',
             headers: {
@@ -37,10 +39,7 @@ const submitCadastro = async (values: any) => {
             body: JSON.stringify(values)
         });
 
-        const data = await response.json();
-        console.log(data);
-
-        return data;
+        return await response.json();
     } catch (error) {
         alert(error);
     }
@@ -63,7 +62,7 @@ const CadastroForm = () => (
             }}
         >
             {(props) => (
-                <Form>
+                <Form onSubmit={submitCadastro}>
                     <Box>
                         <Field name='username'>
                             {({ field, form }) => (
