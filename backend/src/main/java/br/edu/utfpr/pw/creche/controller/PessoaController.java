@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import br.edu.utfpr.pw.creche.model.Pessoa;
 import br.edu.utfpr.pw.creche.repository.PessoaRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class PessoaController {
@@ -52,23 +52,20 @@ public class PessoaController {
 
     @PostMapping("/pessoas")
     public ResponseEntity<Pessoa> createPessoa( @RequestBody Pessoa pessoa ) {
+    	System.out.println(pessoa);
         try {
 			Pessoa createdPessoa = pessoaRepository.save( 
-                new Pessoa( 
-                    pessoa.getNome(),
-                    pessoa.getCpf(),
-                    pessoa.getRg(),
-                    pessoa.getEmail(),
-                    pessoa.getTelefone(),
-                    pessoa.getUrl()
-                )
+                new Pessoa(pessoa)
             );
 			
             return new ResponseEntity<>( createdPessoa, HttpStatus.CREATED );
 		} catch ( Exception e ) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCause());
 			return new ResponseEntity<>( null, HttpStatus.INTERNAL_SERVER_ERROR );
 		}
     }
+
 
     @PutMapping("/pessoas/{id}")
     public ResponseEntity<Pessoa> updatePessoa( @PathVariable Long id, @RequestBody Pessoa pessoa ) {
@@ -112,5 +109,6 @@ public class PessoaController {
         }
 
     }
+    
 
 }
