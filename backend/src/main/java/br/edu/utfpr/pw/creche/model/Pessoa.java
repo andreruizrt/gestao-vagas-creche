@@ -180,8 +180,7 @@ public class Pessoa {
     }
 
     public String toStringAluno(Pessoa aluno) {
-        return "{id=" + aluno.getId() + ", nome=" + aluno.getNome() + ", telefone=" + aluno.getTelefone()
-                        + ", email=" + aluno.getEmail() + ", cpf=" + aluno.getCpf()
+        return "{id=" + aluno.getId() + ", matricula=" + aluno.getMatricula() + ", nome=" + aluno.getNome()  + ", cpf=" + aluno.getCpf()
                         + ", rg=" + aluno.getRg() + ", urlFoto=" + aluno.getUrl() + "}";
     }
 
