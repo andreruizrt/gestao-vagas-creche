@@ -53,7 +53,7 @@ public class Pessoa {
         this.rg = rg;
         this.urlFoto = urlFoto;
     }
-    
+
     public Pessoa(Pessoa pessoa) {
         this.nome = pessoa.getNome();
         this.telefone = pessoa.getTelefone();
@@ -64,7 +64,6 @@ public class Pessoa {
         this.alunos = pessoa.getAlunos();
         this.responsaveis = pessoa.getResponsaveis();
     }
- 
 
     public Long getId() {
         return id;
