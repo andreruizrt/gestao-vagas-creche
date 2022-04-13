@@ -170,12 +170,15 @@ public class Pessoa {
 
         for (int i = 0; i < pessoas.size() - 1; i++) {
             Pessoa pessoa = pessoas.get(i);
+            stringBuilder.append((!pessoa.getMatricula().isEmpty() ? "Alunos [" : "Responsaveis ["));
             stringBuilder.append(i == pessoas.size() - 1 ? toStringAluno(pessoa) : toStringResponsavel(pessoa));
+            stringBuilder.append("]");
         }
 
         stringBuilder.append("]");
         
         System.out.println(stringBuilder.toString());
+        
         return stringBuilder.toString();
     }
 
