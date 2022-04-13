@@ -75,6 +75,14 @@ public class Pessoa {
         this.id = id;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
     public String getNome() {
         return nome;
     }
