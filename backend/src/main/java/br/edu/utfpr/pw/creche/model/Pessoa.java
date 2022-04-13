@@ -164,10 +164,9 @@ public class Pessoa {
         return Objects.equals(id, other.id);
     }
 
-    private String getParentesco(List<Pessoa> pessoas, Integer tipo) {
+    private String getParentesco(List<Pessoa> pessoas) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append((!matricula.isEmpty() ? "Alunos [" : "Responsaveis ["));
-
+        
         for (int i = 0; i < pessoas.size() - 1; i++) {
             Pessoa pessoa = pessoas.get(i);
             stringBuilder.append((!pessoa.getMatricula().isEmpty() ? "Alunos [" : "Responsaveis ["));
@@ -175,8 +174,6 @@ public class Pessoa {
             stringBuilder.append("]");
         }
 
-        stringBuilder.append("]");
-        
         System.out.println(stringBuilder.toString());
         
         return stringBuilder.toString();
