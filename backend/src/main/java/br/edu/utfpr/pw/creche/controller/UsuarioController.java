@@ -64,7 +64,7 @@ public class UsuarioController {
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
     try {
       Usuario _usuario = usuarioRepository
-          .save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), false));
+          .save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), usuario.getTipo()));
       return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -82,7 +82,7 @@ public class UsuarioController {
       _usuario.setUsername(usuario.getUsername());
       _usuario.setSenha(usuario.getSenha());
       _usuario.setEmail(usuario.getEmail());
-      _usuario.setAdmin(usuario.isAdmin());
+      _usuario.setTipo(usuario.getTipo());
 
       return new ResponseEntity<>(usuarioRepository.save(_usuario), HttpStatus.OK);
     } else {
