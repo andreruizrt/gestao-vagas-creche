@@ -13,7 +13,7 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "matricula", length = 10)
+    @Column(name = "matricula", nullable = true, length = 10)
     private String matricula;
     @Column(name = "nome", nullable = false, length = 128)
     private String nome;
