@@ -27,19 +27,19 @@ public class Pessoa {
     private String rg;
     @Column(name = "url_foto", nullable = true)
     private String urlFoto;
-    
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="parentesco", joinColumns=
-    {@JoinColumn(name="responsavel_id")}, inverseJoinColumns=
-      {@JoinColumn(name="aluno_id")})
-	private List<Pessoa> alunos; 
 
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="parentesco", joinColumns=
-    {@JoinColumn(name="aluno_id")}, inverseJoinColumns=
-      {@JoinColumn(name="responsavel_id")})
-	private List<Pessoa> responsaveis; 
-	
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "parentesco", joinColumns = { @JoinColumn(name = "responsavel_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "aluno_id") })
+    private List<Pessoa> alunos;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "parentesco", joinColumns = { @JoinColumn(name = "aluno_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "responsavel_id") })
+    private List<Pessoa> responsaveis;
+
+    public Pessoa() {
+    }
 	private Integer tipo;
 
 
