@@ -129,75 +129,78 @@ public class Pessoa {
     public void setUrl(String urlFoto) {
         this.urlFoto = urlFoto;
     }
-    
 
-	public List<Pessoa> getResponsaveis() {
-		return responsaveis;
-	}
+    public List<Pessoa> getResponsaveis() {
+        return responsaveis;
+    }
 
-	public void setResponsaveis(List<Pessoa> responsaveis) {
-		this.responsaveis = responsaveis;
-	}
-	
-	public List<Pessoa> getAlunos() {
-		return alunos;
-	}
+    public void setResponsaveis(List<Pessoa> responsaveis) {
+        this.responsaveis = responsaveis;
+    }
 
-	public void setAlunos(List<Pessoa> alunos) {
-		this.alunos = alunos;
-	}
-  
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public List<Pessoa> getAlunos() {
+        return alunos;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pessoa other = (Pessoa) obj;
-		return Objects.equals(id, other.id);
-	}
-	private String getParentesco(List<Pessoa> pessoas,Integer tipo) {
-		StringBuilder b = new StringBuilder();
-		
-		b.append((tipo==1?"Alunos [":"Responsaveis ["));
-		for (int i = 0; i < pessoas.size(); i++) {
-			Pessoa p = pessoas.get(i);
-			if(i==pessoas.size()-1) {
-				b.append("{id=" + p.getId() + ", nome=" + p.getNome() + ", telefone=" + p.getTelefone() 
-				       + ", email=" + p.getEmail() + ", cpf=" + p.getCpf()
-						+ ", rg=" + p.getRg() + ", urlFoto=" + p.getUrl() + "}");				
-			}else {
-				b.append("{id=" + p.getId() + ", nome=" + p.getNome() + ", telefone=" + p.getTelefone() 
-			       + ", email=" + p.getEmail() + ", cpf=" + p.getCpf()
-					+ ", rg=" + p.getRg() + ", urlFoto=" + p.getUrl() + "}");			
-			}
+    public void setAlunos(List<Pessoa> alunos) {
+        this.alunos = alunos;
+    }
 
-		}
-		b.append("]");
-		System.out.println(b.toString());
-		return b.toString();
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
-	@Override
-	public String toString() {
-			
-			return "Pessoa [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", cpf=" + cpf
-					+ ", rg=" + rg + ", urlFoto=" + urlFoto + "]";
-	}
-	
+    @Override
+    public boolean equals(Object objeto) {
+        if (this == objeto) {
+            return true;
+        }
 
-	
+        if (objeto == null) {
+            return false;
+        }
 
-	
-    
-	
+        if (getClass() != objeto.getClass()) {
+            return false;
+        }
 
+        Pessoa other = (Pessoa) objeto;
+        return Objects.equals(id, other.id);
+    }
+
+    private String getParentesco(List<Pessoa> pessoas, Integer tipo) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append((!matricula.isEmpty() ? "Alunos [" : "Responsaveis ["));
+
+        for (int i = 0; i < pessoas.size() - 1; i++) {
+            Pessoa pessoa = pessoas.get(i);
+            stringBuilder.append(i == pessoas.size() - 1 ? toStringAluno(pessoa) : toStringResponsavel(pessoa));
+        }
+
+        stringBuilder.append("]");
+        
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
+    }
+
+    public String toStringAluno(Pessoa aluno) {
+        return "{id=" + aluno.getId() + ", nome=" + aluno.getNome() + ", telefone=" + aluno.getTelefone()
+                        + ", email=" + aluno.getEmail() + ", cpf=" + aluno.getCpf()
+                        + ", rg=" + aluno.getRg() + ", urlFoto=" + aluno.getUrl() + "}";
+    }
+
+    public String toStringResponsavel(Pessoa responsavel) {
+        return "{id=" + responsavel.getId() + ", nome=" + responsavel.getNome() + ", telefone=" + responsavel.getTelefone()
+                        + ", email=" + responsavel.getEmail() + ", cpf=" + responsavel.getCpf()
+                        + ", rg=" + responsavel.getRg() + ", urlFoto=" + responsavel.getUrl() + "}";
+    }
+
+    @Override
+    public String toString() {
+
+        return "Pessoa [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", cpf=" + cpf
+                + ", rg=" + rg + ", urlFoto=" + urlFoto + "]";
+    }
 
 }
