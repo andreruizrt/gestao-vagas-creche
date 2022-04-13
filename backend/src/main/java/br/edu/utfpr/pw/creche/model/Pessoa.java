@@ -5,14 +5,17 @@ import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id")
+    @Column(name = "id")
     private Long id;
+    @Column(name = "matricula", length = 10)
+    private String matricula;
     @Column(name = "nome", nullable = false, length = 128)
     private String nome;
     @Column(name = "telefone", nullable = false, length = 20)
