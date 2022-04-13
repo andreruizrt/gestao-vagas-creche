@@ -40,10 +40,6 @@ public class Pessoa {
 
     public Pessoa() {
     }
-	private Integer tipo;
-
-
-    public Pessoa() {}
 
     public Pessoa(String nome, String telefone, String email, String cpf, String rg, String urlFoto) {
         this.nome = nome;
