@@ -3,7 +3,6 @@ package br.edu.utfpr.pw.creche.model;
 import java.util.Objects;
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
