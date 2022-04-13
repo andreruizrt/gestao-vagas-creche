@@ -17,15 +17,15 @@ public class Pessoa {
     private String matricula;
     @Column(name = "nome", nullable = false, length = 128)
     private String nome;
-    @Column(name = "telefone", nullable = false, length = 20)
+    @Column(name = "telefone", nullable= true, length = 20)
     private String telefone;
     @Column(name = "email", nullable = true, length = 128)
     private String email;
-    @Column(name = "cpf", nullable = false, length = 14)
+    @Column(name = "cpf", nullable = true, length = 14)
     private String cpf;
     @Column(name = "rg", nullable = false, length = 15)
     private String rg;
-    @Column(name = "url_foto", nullable = true)
+    @Column(name = "url_foto", nullable = false)
     private String urlFoto;
 
     @ManyToMany(fetch = FetchType.LAZY)
