@@ -192,7 +192,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-
         return "Pessoa [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", cpf=" + cpf
                 + ", rg=" + rg + ", urlFoto=" + urlFoto + "]";
     }
