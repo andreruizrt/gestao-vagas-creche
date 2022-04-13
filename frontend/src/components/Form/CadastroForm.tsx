@@ -29,8 +29,6 @@ const cadastroSchema = Yup.object().shape({
 
 const submitCadastro = async (values: any) => {
     try {
-       
-        delete values['toggle'];
         const response = await fetch('http://localhost:8080/api/usuarios', {
             method: 'POST',
             headers: {
@@ -38,10 +36,10 @@ const submitCadastro = async (values: any) => {
             },
             body: JSON.stringify(values)
         });
-
+        
         return await response.json();
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 }
 
@@ -49,7 +47,6 @@ const CadastroForm = () => (
     <Box>
         <Formik
             initialValues={{}}
-            // validationSchema={cadastroSchema}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
                     actions.setSubmitting(true);
@@ -62,7 +59,7 @@ const CadastroForm = () => (
             }}
         >
             {(props) => (
-                <Form onSubmit={submitCadastro}>
+                <Form onSubmit={props.handleSubmit}>
                     <Box>
                         <Field name='username'>
                             {({ field, form }) => (

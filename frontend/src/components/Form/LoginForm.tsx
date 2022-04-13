@@ -24,18 +24,18 @@ const LoginSchema = Yup.object().shape({
 });
 
 const submitLogin = async (values) => {
+
     try {
         const response = await fetch('http://locahost:8080/api/usuarios', {
             method: 'POST',
-            body: JSON.stringify(values),
+            body: await JSON.stringify(values),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        const data = await response.json();
-        console.log(data);
 
-        return data;
+
+        return await response.json();
     } catch (error) {
         console.log(error);
     }
