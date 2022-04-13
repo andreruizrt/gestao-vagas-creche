@@ -15,8 +15,12 @@ public class Usuario {
 	private String senha;
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
-	@Column(name = "admin", nullable = false)
-	private Boolean admin;
+	// 1 - Administrador
+	// 2 - Gerente da Creche
+	// 3 - Comum
+	@Column(name = "tipo", nullable = false)
+	private Long tipo;
+
 
     @Override
     public boolean equals(Object objeto) {
@@ -33,11 +37,11 @@ public class Usuario {
  
 	public Usuario() {}
 
-	public Usuario(String username, String senha, String email, Boolean admin) {
+	public Usuario(String username, String senha, String email, Long tipo) {
 		this.username = username;
 		this.senha = senha;
 		this.email = email;
-		this.admin = admin;
+		this.tipo = tipo;
 	}
 
 	public Long getId() {
@@ -70,15 +74,15 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public Boolean isAdmin() {
-		return admin;
+	public Long getTipo() {
+		return tipo;
 	}
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
+	public void setTipo(Long tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
 	public String toString() {
-		return "Tutorial [id=" + id + ", username=" + username + ", isAdmin=" + admin + "]";
+		return "Tutorial [id=" + id + ", username=" + username + ", tipo=" + tipo + "]";
 	}
 }
