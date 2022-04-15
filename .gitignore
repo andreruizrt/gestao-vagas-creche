@@ -106,7 +106,10 @@ dist
 # Yarn
 .yarn/cache/
 .yarn/tmp/
-yarn.lock
+*.lock
 
 # Dynamic file
 .attach_*
+
+#vscode
+.vscode/
