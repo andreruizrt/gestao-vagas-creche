@@ -15,6 +15,7 @@ import {
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
+
 const cadastroSchema = Yup.object().shape({
     username: Yup.string()
         .min(2, 'Muito curto!')
@@ -28,6 +29,7 @@ const cadastroSchema = Yup.object().shape({
 });
 
 const submitCadastro = async (values: any) => {
+    
     try {
         const response = await fetch('http://localhost:8080/api/usuarios', {
             method: 'POST',
@@ -36,8 +38,11 @@ const submitCadastro = async (values: any) => {
             },
             body: JSON.stringify(values)
         });
+
+        const data = await response.json();
+        data.status === 'success' ? alert('Cadastro realizado com sucesso!') : alert('Erro ao realizar o cadastro!');
         
-        return await response.json();
+        return data;
     } catch (error) {
         console.log(error);
     }
