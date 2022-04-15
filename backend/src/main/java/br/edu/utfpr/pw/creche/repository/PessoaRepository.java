@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import br.edu.utfpr.pw.creche.model.Pessoa;
-
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     Optional<Pessoa> findById(Long id);
