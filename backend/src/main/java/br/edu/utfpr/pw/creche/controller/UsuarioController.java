@@ -116,4 +116,26 @@ public class UsuarioController {
     }
 
   }
+
+  @PostMapping("/login")
+  public ResponseEntity<HttpStatus> login(@RequestBody Usuario usuario) {
+
+    try {
+      Usuario _usuario = usuarioRepository.findByUsername(usuario.getUsername());
+
+      if (usuario.getUsername() == null || usuario.getSenha() == null) {
+        return new ResponseEntity<>(HttpStatus.OK);
+      }
+
+      if (_usuario.getSenha().equals(usuario.getSenha())) {
+        return new ResponseEntity<>(HttpStatus.OK);
+      }
+
+      return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+  }
+
 }

@@ -15,11 +15,8 @@ public class Usuario {
 	private String senha;
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
-	// 1 - Administrador
-	// 2 - Gerente da Creche
-	// 3 - Comum
 	@Column(name = "tipo", nullable = false)
-	private Long tipo;
+	private Character tipo;
 
 
     @Override
@@ -37,7 +34,7 @@ public class Usuario {
  
 	public Usuario() {}
 
-	public Usuario(String username, String senha, String email, Long tipo) {
+	public Usuario(String username, String senha, String email, Character tipo) {
 		this.username = username;
 		this.senha = senha;
 		this.email = email;
@@ -74,10 +71,10 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public Long getTipo() {
+	public Character getTipo() {
 		return tipo;
 	}
-	public void setTipo(Long tipo) {
+	public void setTipo(Character tipo) {
 		this.tipo = tipo;
 	}
 

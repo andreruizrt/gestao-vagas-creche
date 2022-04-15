@@ -26,14 +26,20 @@ const LoginSchema = Yup.object().shape({
 const submitLogin = async (values) => {
 
     try {
-        const response = await fetch('http://locahost:8080/api/usuarios', {
+        
+        const valuesJson = await JSON.stringify(values);
+        alert(valuesJson);
+
+        const response = await fetch('http://localhost:8080/api/login', {
             method: 'POST',
-            body: await JSON.stringify(values),
+            body: valuesJson,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
 
+        const isSucess = await response.status === 200;
+        isSucess ? alert('Login realizado com sucesso!') : alert('Login falhou! Erro: ' + response.status);
 
         return await response.json();
     } catch (error) {
@@ -45,27 +51,29 @@ const LoginForm = () => (
     <Box>
         <Formik
             initialValues={{}}
-            validationSchema={LoginSchema}
             onSubmit={(values, actions) => {
-                submitLogin(values);
                 actions.setSubmitting(true);
+                submitLogin(values).then(() => {
+                    actions.setSubmitting(false);
+                    actions.resetForm();
+                });
             }}
         >
             {(props) => (
-                <Form>
+                <Form onSubmit={props.handleSubmit}>
                     <Box paddingLeft={2}>
-                        <Field name='login'>
+                        <Field name='username'>
                             {({ field, form }) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                    <FormLabel htmlFor='login'>Usuário ou Email:</FormLabel>
-                                    <Input {...field} id='login' placeholder='Usuário ou email' />
+                                    <FormLabel htmlFor='username'>Usuário ou Email:</FormLabel>
+                                    <Input {...field} id='username' placeholder='Usuário ou email' />
                                     <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                                 </FormControl>
                             )}
                         </Field>
                     </Box>
                     <Box p={2}>
-                        <Field name='password'>
+                        <Field name='senha'>
                             {({ field, form }) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name}>
                                     <FormLabel htmlFor='senha'>Senha:</FormLabel>
