@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Yarn
+.yarn/cache/
+.yarn/tmp/
+yarn.lock
+
+# Dynamic file
+.attach_*
