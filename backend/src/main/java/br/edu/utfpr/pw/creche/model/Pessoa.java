@@ -17,7 +17,7 @@ public class Pessoa {
     private String matricula;
     @Column(name = "nome", nullable = false, length = 128)
     private String nome;
-    @Column(name = "telefone", nullable= true, length = 20)
+    @Column(name = "telefone", nullable = true, length = 20)
     private String telefone;
     @Column(name = "email", nullable = true, length = 128)
     private String email;
@@ -164,36 +164,25 @@ public class Pessoa {
         return Objects.equals(id, other.id);
     }
 
-    private String getParentesco(List<Pessoa> pessoas) {
+    @Override
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        
-        for (int i = 0; i < pessoas.size() - 1; i++) {
-            Pessoa pessoa = pessoas.get(i);
-            stringBuilder.append((!pessoa.getMatricula().isEmpty() ? "Aluno [" : "Responsavel ["));
-            stringBuilder.append(i == pessoas.size() - 1 ? toStringAluno(pessoa) : toStringResponsavel(pessoa));
-            stringBuilder.append("]");
-        }
+
+        stringBuilder.append(!matricula.isEmpty() ? toStringAluno() : toStringResponsavel());
+        stringBuilder.append("]");
 
         System.out.println(stringBuilder.toString());
-        
+
         return stringBuilder.toString();
     }
 
-    public String toStringAluno(Pessoa aluno) {
-        return "{id=" + aluno.getId() + ", matricula=" + aluno.getMatricula() + ", nome=" + aluno.getNome()  + ", cpf=" + aluno.getCpf()
-                        + ", rg=" + aluno.getRg() + ", urlFoto=" + aluno.getUrl() + "}";
+    private String toStringAluno() {
+        return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
+                + ", url=" + urlFoto + "]";
     }
 
-    public String toStringResponsavel(Pessoa responsavel) {
-        return "{id=" + responsavel.getId() + ", nome=" + responsavel.getNome() + ", telefone=" + responsavel.getTelefone()
-                        + ", email=" + responsavel.getEmail() + ", cpf=" + responsavel.getCpf()
-                        + ", rg=" + responsavel.getRg() + ", urlFoto=" + responsavel.getUrl() + "}";
+    private String toStringResponsavel() {
+        return "Responsavel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email
+                + ", telefone=" + telefone + ", url=" + urlFoto + "]";
     }
-
-    @Override
-    public String toString() {
-        return "Pessoa [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", cpf=" + cpf
-                + ", rg=" + rg + ", urlFoto=" + urlFoto + "]";
-    }
-
 }
