@@ -7,14 +7,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "matricula", nullable = true, length = 10)
-    private String matricula;
     @Column(name = "nome", nullable = false, length = 128)
     private String nome;
     @Column(name = "telefone", nullable = true, length = 20)
@@ -31,12 +30,8 @@ public class Pessoa {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "parentesco", joinColumns = { @JoinColumn(name = "responsavel_id") }, inverseJoinColumns = {
             @JoinColumn(name = "aluno_id") })
-    private List<Pessoa> alunos;
+    private List<Aluno> alunos;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "parentesco", joinColumns = { @JoinColumn(name = "aluno_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "responsavel_id") })
-    private List<Pessoa> responsaveis;
 
     public Pessoa() {
     }
@@ -57,8 +52,6 @@ public class Pessoa {
         this.cpf = pessoa.getCpf();
         this.rg = pessoa.getRg();
         this.urlFoto = pessoa.getUrl();
-        this.alunos = pessoa.getAlunos();
-        this.responsaveis = pessoa.getResponsaveis();
     }
 
     public Long getId() {
@@ -69,13 +62,7 @@ public class Pessoa {
         this.id = id;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
 
     public String getNome() {
         return nome;
@@ -125,23 +112,25 @@ public class Pessoa {
         this.urlFoto = urlFoto;
     }
 
-    public List<Pessoa> getResponsaveis() {
-        return responsaveis;
-    }
+    
 
-    public void setResponsaveis(List<Pessoa> responsaveis) {
-        this.responsaveis = responsaveis;
-    }
+    public String getUrlFoto() {
+		return urlFoto;
+	}
 
-    public List<Pessoa> getAlunos() {
-        return alunos;
-    }
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
 
-    public void setAlunos(List<Pessoa> alunos) {
-        this.alunos = alunos;
-    }
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
 
-    @Override
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	@Override
     public int hashCode() {
         return Objects.hash(id);
     }
@@ -164,25 +153,32 @@ public class Pessoa {
         return Objects.equals(id, other.id);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(!matricula.isEmpty() ? toStringAluno() : toStringResponsavel());
-        stringBuilder.append("]");
-
-        System.out.println(stringBuilder.toString());
-
-        return stringBuilder.toString();
-    }
-
-    private String toStringAluno() {
-        return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
-                + ", url=" + urlFoto + "]";
-    }
-
-    private String toStringResponsavel() {
-        return "Responsavel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email
-                + ", telefone=" + telefone + ", url=" + urlFoto + "]";
-    }
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", cpf=" + cpf
+				+ ", rg=" + rg + ", urlFoto=" + urlFoto + ", alunos=" + alunos + "]";
+	}
+    
+    
+//    @Override
+//    public String toString() {
+//        StringBuilder stringBuilder = new StringBuilder();
+//
+//        stringBuilder.append(!matricula.isEmpty() ? toStringAluno() : toStringResponsavel());
+//        stringBuilder.append("]");
+//
+//        System.out.println(stringBuilder.toString());
+//
+//        return stringBuilder.toString();
+//    }
+//
+//    private String toStringAluno() {
+//        return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
+//                + ", url=" + urlFoto + "]";
+//    }
+//
+//    private String toStringResponsavel() {
+//        return "Responsavel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email
+//                + ", telefone=" + telefone + ", url=" + urlFoto + "]";
+//    }
 }

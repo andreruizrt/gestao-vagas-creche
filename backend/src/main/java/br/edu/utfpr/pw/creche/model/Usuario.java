@@ -3,6 +3,8 @@ package br.edu.utfpr.pw.creche.model;
 import java.util.Objects;
 import javax.persistence.*;
 
+import br.edu.utfpr.pw.creche.util.ENUMTIPOUSUARIO;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -15,8 +17,9 @@ public class Usuario {
 	private String senha;
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
-	@Column(name = "tipo", nullable = false)
-	private Character tipo;
+	@Column(name = "tipo", nullable = false, columnDefinition = "char default  'C' ")
+	@Enumerated(EnumType.ORDINAL)
+	private ENUMTIPOUSUARIO tipo;
 
 
     @Override
@@ -34,7 +37,7 @@ public class Usuario {
  
 	public Usuario() {}
 
-	public Usuario(String username, String senha, String email, Character tipo) {
+	public Usuario(String username, String senha, String email, ENUMTIPOUSUARIO tipo) {
 		this.username = username;
 		this.senha = senha;
 		this.email = email;
@@ -71,10 +74,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public Character getTipo() {
+	
+	public ENUMTIPOUSUARIO getTipo() {
 		return tipo;
 	}
-	public void setTipo(Character tipo) {
+
+	public void setTipo(ENUMTIPOUSUARIO tipo) {
 		this.tipo = tipo;
 	}
 
