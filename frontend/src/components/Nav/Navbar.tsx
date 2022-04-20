@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
   Box,
   Flex,
@@ -22,6 +22,8 @@ import { UserNavLink } from '../Auth/LoginHamburger';
 const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Área dos Pais', link: "/pais" }, { option: 'Sobre nós', link: "/about" }];
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
 
+
+
 const NavLink = ({ link, children }: { link: string, children: ReactNode }) => (
   <Link
     color="blue.500"
@@ -40,7 +42,7 @@ const NavLink = ({ link, children }: { link: string, children: ReactNode }) => (
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  
   return (
     <Box bg={useColorModeValue('blue.100', 'blue.900')} px={4}>
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
