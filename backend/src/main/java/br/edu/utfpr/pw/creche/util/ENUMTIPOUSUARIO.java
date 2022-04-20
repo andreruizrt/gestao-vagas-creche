@@ -1,14 +1,14 @@
 package br.edu.utfpr.pw.creche.util;
 
 public enum ENUMTIPOUSUARIO {
-	GERENTE('G'), COMUM('C'), ADMINISTRADOR('A');
+	GERENTE(1), COMUM(2), ADMINISTRADOR(3);
 
-	private final Character valor;
+	private final Integer valor;
 	
-	ENUMTIPOUSUARIO(Character valorOpcao){
+	ENUMTIPOUSUARIO(Integer valorOpcao){
 		valor = valorOpcao;
 	}
-	public Character getValor(){
+	public Integer getValor(){
 		return valor;
 	}
 }

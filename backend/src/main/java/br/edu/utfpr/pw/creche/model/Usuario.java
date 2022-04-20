@@ -17,7 +17,7 @@ public class Usuario {
 	private String senha;
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
-	@Column(name = "tipo", nullable = false, columnDefinition = "char default  'C' ")
+	@Column(name = "tipo", nullable = false, columnDefinition = "int default  2 ")
 	@Enumerated(EnumType.ORDINAL)
 	private ENUMTIPOUSUARIO tipo;
 
@@ -41,6 +41,7 @@ public class Usuario {
 		this.username = username;
 		this.senha = senha;
 		this.email = email;
+		System.err.println("Tipo: "+tipo);
 		this.tipo = tipo;
 	}
 

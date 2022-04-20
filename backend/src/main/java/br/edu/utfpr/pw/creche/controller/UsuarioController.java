@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.utfpr.pw.creche.model.Usuario;
 import br.edu.utfpr.pw.creche.repository.UsuarioRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -31,10 +31,8 @@ public class UsuarioController {
   @GetMapping("/usuarios")
   public ResponseEntity<List<Usuario>> getAllUsuarios() {
     try {
-
       List<Usuario> usuarios = new ArrayList<Usuario>();
       usuarioRepository.findAll().forEach(usuarios::add);
-
       if (usuarios.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
