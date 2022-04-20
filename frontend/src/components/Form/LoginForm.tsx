@@ -10,18 +10,6 @@ import {
 } from '@chakra-ui/react';
 
 import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-
-const LoginSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(2, 'Muito curto!')
-        .max(50, 'Muito longo!')
-        .required('requerido'),
-    password: Yup.string()
-        .min(2, 'Muito curto!')
-        .max(50, 'Muito longo!')
-        .required('requerido')
-});
 
 const submitLogin = async (values) => {
 
