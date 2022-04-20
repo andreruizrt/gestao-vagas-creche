@@ -13,20 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
 
-
-const cadastroSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(2, 'Muito curto!')
-        .max(50, 'Muito longo!')
-        .required('Requerido'),
-    password: Yup.string()
-        .min(2, 'Muito curto!')
-        .max(50, 'Muito longo!')
-        .required('Requerido'),
-    email: Yup.string().email('Email inválido').required('Requerido'),
-});
 
 const submitCadastro = async (values: any) => {
     
