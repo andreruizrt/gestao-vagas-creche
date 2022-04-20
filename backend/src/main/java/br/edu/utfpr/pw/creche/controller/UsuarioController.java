@@ -36,7 +36,7 @@ public class UsuarioController {
       if (usuarios.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
-
+      
       return new ResponseEntity<>(usuarios, HttpStatus.OK);
 
     } catch (Exception e) {

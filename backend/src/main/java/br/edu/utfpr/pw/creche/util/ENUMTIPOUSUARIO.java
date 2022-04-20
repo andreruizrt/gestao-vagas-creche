@@ -11,4 +11,6 @@ public enum ENUMTIPOUSUARIO {
 	public Integer getValor(){
 		return valor;
 	}
+	
+
 }

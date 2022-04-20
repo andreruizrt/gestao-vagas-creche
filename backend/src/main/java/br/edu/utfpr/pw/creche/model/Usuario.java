@@ -18,7 +18,6 @@ public class Usuario {
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
 	@Column(name = "tipo", nullable = false, columnDefinition = "int default  2 ")
-	@Enumerated(EnumType.ORDINAL)
 	private ENUMTIPOUSUARIO tipo;
 
 
