@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 import getConfig from 'next/config';
 
-import { apiHandler } from 'helpers/api';
+import { apiHandler } from '../../../helpers/api';
 
 const { serverRuntimeConfig } = getConfig();
 

@@ -116,7 +116,7 @@ const deleteAllUsers = async (id: Number | undefined) => {
   const url = id ? `http://localhost:8080/api/usuarios/${id}` : `http://localhost:8080/api/usuarios`;
 
   try {
-    const response = await fetch(url + id, {
+    const response = await fetch(url, {
       method: 'DELETE'
     });
 

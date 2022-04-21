@@ -1,7 +1,11 @@
+import { useState, useEffect } from 'react';
+
+import { userService } from '../../services';
+
 import LoggedUserMenuOptions from './LoggedUserMenuOptions';
 import LoginCadastrarButtons from './LoginCadatrarButtons';
 
-export default function LoginNavBar {
+export default function LoginNavBar() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {

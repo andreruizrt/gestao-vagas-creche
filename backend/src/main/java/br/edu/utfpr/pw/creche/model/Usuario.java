@@ -14,7 +14,7 @@ public class Usuario {
 	@Column(name = "username", nullable = false, length = 16)
 	private String username;
 	@Column(name = "password", nullable = false)
-	private String senha;
+	private String password;
 	@Column(name = "email", nullable = true, length = 128)
 	private String email;
 	@Column(name = "tipo", nullable = false, columnDefinition = "int default  2 ")
@@ -36,9 +36,9 @@ public class Usuario {
  
 	public Usuario() {}
 
-	public Usuario(String username, String senha, String email, ENUMTIPOUSUARIO tipo) {
+	public Usuario(String username, String password, String email, ENUMTIPOUSUARIO tipo) {
 		this.username = username;
-		this.senha = senha;
+		this.password = password;
 		this.email = email;
 		System.err.println("Tipo: "+tipo);
 		this.tipo = tipo;
@@ -59,11 +59,11 @@ public class Usuario {
 		this.username = username;
 	}
     
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {

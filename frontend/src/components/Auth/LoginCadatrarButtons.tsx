@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react"
 
 import CadastroForm from "../Form/CadastroForm"
-import LoginForm from "../Form/LoginForm"
+import LoginForm from "../Form/Login"
 
 const CadastrarModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()

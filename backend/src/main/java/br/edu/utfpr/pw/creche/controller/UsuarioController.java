@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.utfpr.pw.creche.model.Usuario;
 import br.edu.utfpr.pw.creche.repository.UsuarioRepository;
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -28,7 +28,7 @@ public class UsuarioController {
   @Autowired
   private UsuarioRepository usuarioRepository;
 
-  @GetMapping("/usuarios")
+  @GetMapping("/users")
   public ResponseEntity<List<Usuario>> getAllUsuarios() {
     try {
       List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -46,7 +46,7 @@ public class UsuarioController {
     }
   }
 
-  @GetMapping("/usuarios/{id}")
+  @GetMapping("/users/{id}")
   public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -58,11 +58,11 @@ public class UsuarioController {
     }
   }
 
-  @PostMapping("/usuarios")
+  @PostMapping("/users")
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
     try {
       Usuario _usuario = usuarioRepository
-          .save(new Usuario(usuario.getUsername(), usuario.getSenha(), usuario.getEmail(), usuario.getTipo()));
+          .save(new Usuario(usuario.getUsername(), usuario.getPassword(), usuario.getEmail(), usuario.getTipo()));
       return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,7 +70,7 @@ public class UsuarioController {
 
   }
 
-  @PutMapping("/usuarios/{id}")
+  @PutMapping("/users/{id}")
   public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 
     Optional<Usuario> usuarioData = usuarioRepository.findById(id);
@@ -78,7 +78,7 @@ public class UsuarioController {
     if (usuarioData.isPresent()) {
       Usuario _usuario = usuarioData.get();
       _usuario.setUsername(usuario.getUsername());
-      _usuario.setSenha(usuario.getSenha());
+      _usuario.setPassword(usuario.getPassword());
       _usuario.setEmail(usuario.getEmail());
       _usuario.setTipo(usuario.getTipo());
 
@@ -89,7 +89,7 @@ public class UsuarioController {
 
   }
 
-  @DeleteMapping("/usuarios/{id}")
+  @DeleteMapping("/users/{id}")
   public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") Long id) {
 
     try {
@@ -102,7 +102,7 @@ public class UsuarioController {
 
   }
 
-  @DeleteMapping("/usuarios")
+  @DeleteMapping("/users")
   public ResponseEntity<HttpStatus> deleteAllUsuarios() {
 
     try {
@@ -121,11 +121,11 @@ public class UsuarioController {
     try {
       Usuario _usuario = usuarioRepository.findByUsername(usuario.getUsername());
 
-      if (usuario.getUsername() == null || usuario.getSenha() == null) {
+      if (usuario.getUsername() == null || usuario.getPassword() == null) {
         return new ResponseEntity<>(HttpStatus.OK);
       }
 
-      if (_usuario.getSenha().equals(usuario.getSenha())) {
+      if (_usuario.getPassword().equals(usuario.getPassword())) {
         return new ResponseEntity<>(HttpStatus.OK);
       }
 

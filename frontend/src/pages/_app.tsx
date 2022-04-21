@@ -1,18 +1,13 @@
 import Head from 'next/head';
-import { AppProps } from 'next/app'
 import { useRouter } from 'next/router';
 
 import { useState, useEffect } from 'react';
 
-import { userService } from 'services';
+import { userService } from '../services';
 
 import { Box, ChakraProvider } from '@chakra-ui/react'
 
 import theme from '../theme'
-import Navbar from '../components/Nav/Navbar';
-
-
-export default App;
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -58,7 +53,6 @@ function App({ Component, pageProps }) {
       </Head>
       <Box>
         <ChakraProvider resetCSS theme={theme}>
-          <Navbar />
           <Box>
             { authorized && <Component {...pageProps} /> }
           </Box>
@@ -68,3 +62,5 @@ function App({ Component, pageProps }) {
     </>
   )
 }
+
+export default App;
