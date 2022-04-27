@@ -21,7 +21,7 @@ usuario
 
 PEGAR TODOS OS USUÁRIOS
 
-/api/users/
+> /api/users/
 
 ```
 [{
@@ -43,7 +43,7 @@ PEGAR TODOS OS USUÁRIOS
     "tipo": "COMUM"
 }]
 ```
-/api/users/1
+> /api/users/1
 
 ```
 {
@@ -57,13 +57,12 @@ PEGAR TODOS OS USUÁRIOS
 
 ## POST ##
 
-* /api/login *
+> /api/login
 
 ###### LOGIN
 
--- REQ
-
 ```
+REQUEST
 
 Body {
     "username": "teste1",
@@ -72,9 +71,9 @@ Body {
 
 ```
 
--- RES
 
 ```
+RESPONSE
 
 {
     "id": 1,
