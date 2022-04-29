@@ -8,6 +8,7 @@ import br.edu.utfpr.pw.creche.util.ENUMTIPOUSUARIO;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -36,12 +37,18 @@ public class Usuario {
  
 	public Usuario() {}
 
-	public Usuario(String username, String password, String email, ENUMTIPOUSUARIO tipo) {
+	public Usuario(String username, String password, String email, ENUMTIPOUSUARIO enumtipousuario) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		System.err.println("Tipo: "+tipo);
-		this.tipo = tipo;
+		this.tipo = enumtipousuario;
+	}
+
+	public Usuario(Usuario usuario) {
+		this.username = usuario.getUsername();
+		this.password = usuario.getPassword();
+		this.email = usuario.getEmail();
+		this.tipo = usuario.getTipo();
 	}
 
 	public Long getId() {
@@ -85,6 +92,6 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Tutorial [id=" + id + ", username=" + username + ", tipo=" + tipo + "]";
+		return "Usuario [id=" + id + ", username=" + username + ", tipo=" + tipo + "]";
 	}
 }

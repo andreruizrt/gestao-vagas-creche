@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "creche")
 public class Creche {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,9 +32,10 @@ public class Creche {
     private String estado;
     @Column(name = "cep", nullable = false, length = 10)
     private String cep;
+    @Column(name = "qtd_vagas", nullable = true, length = 10)
+    private String qtdVagas;
     
-    public Creche() {
-    }
+    public Creche() {}
 
     public Creche(String nomeFantasia, String razaoSocial, String cnpj, String telefone, String email, String endereco, String numero, String bairro, String cidade, String estado, String cep) {
         this.nomeFantasia = nomeFantasia;
@@ -47,6 +49,21 @@ public class Creche {
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
+    }
+
+    public Creche(Creche creche) {
+        this.nomeFantasia = creche.getNomeFantasia();
+        this.razaoSocial = creche.getRazaoSocial();
+        this.cnpj = creche.getCnpj();
+        this.telefone = creche.getTelefone();
+        this.email = creche.getEmail();
+        this.endereco = creche.getEndereco();
+        this.numero = creche.getNumero();
+        this.bairro = creche.getBairro();
+        this.cidade = creche.getCidade();
+        this.estado = creche.getEstado();
+        this.cep = creche.getCep();
+        this.qtdVagas = creche.getQtdVagas();
     }
 
     public Long getId() {
@@ -143,6 +160,14 @@ public class Creche {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getQtdVagas() {
+        return qtdVagas;
+    }
+
+    public void setQtdVagas(String qtdVagas) {
+        this.qtdVagas = qtdVagas;
     }
 
 

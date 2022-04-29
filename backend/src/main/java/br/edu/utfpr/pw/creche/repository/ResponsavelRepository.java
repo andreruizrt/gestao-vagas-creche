@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.utfpr.pw.creche.model.Pessoa;
+import br.edu.utfpr.pw.creche.model.Responsavel;
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
-    Optional<Pessoa> findById(Long id);
-    List<Pessoa> findByCpf(String cpf);
+public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> {
+    Optional<Responsavel> findById(Long id);
+    List<Responsavel> findByCpf(String cpf);
 }

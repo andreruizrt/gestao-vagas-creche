@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.utfpr.pw.creche.model.Aluno;
 import br.edu.utfpr.pw.creche.repository.AlunoRepository;
 
+
+// @CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class AlunoController {
@@ -59,13 +63,7 @@ public class AlunoController {
     @PostMapping("/alunos")
     public ResponseEntity<Aluno> createAluno( @RequestBody Aluno aluno ) {
         try {
-        	System.out.println(aluno);
-        	Aluno createdAluno = alunoRepository.save( 
-                new Aluno(aluno.getMatricula(), aluno.getDataMatricula(),
-                		  aluno.getNome(), aluno.getTelefone(), aluno.getEmail(),
-                		  aluno.getCpf(), aluno.getRg(), aluno.getUrlFoto())
-            );
-			
+        	Aluno createdAluno = alunoRepository.save( new Aluno(aluno) );
             return new ResponseEntity<>( createdAluno, HttpStatus.CREATED );
 		} catch ( Exception e ) {
 			return new ResponseEntity<>( null, HttpStatus.INTERNAL_SERVER_ERROR );
@@ -81,11 +79,9 @@ public class AlunoController {
         if (alunoData.isPresent()) {
         	Aluno updatedAluno = alunoData.get();
         	updatedAluno.setNome( aluno.getNome() );
-        	updatedAluno.setTelefone( aluno.getTelefone() );
-        	updatedAluno.setEmail( aluno.getEmail() );
             updatedAluno.setCpf( aluno.getCpf() );
             updatedAluno.setRg( aluno.getRg() );
-            updatedAluno.setUrl( aluno.getUrl() );
+            updatedAluno.setUrlFoto(aluno.getUrlFoto());
         
             return new ResponseEntity<>(alunoRepository.save(updatedAluno), HttpStatus.OK);
         } else {

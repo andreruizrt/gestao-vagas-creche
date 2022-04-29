@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.utfpr.pw.creche.model.Usuario;
 import br.edu.utfpr.pw.creche.repository.UsuarioRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
+// @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -61,8 +62,7 @@ public class UsuarioController {
   @PostMapping("/users")
   public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
     try {
-      Usuario _usuario = usuarioRepository
-          .save(new Usuario(usuario.getUsername(), usuario.getPassword(), usuario.getEmail(), usuario.getTipo()));
+      Usuario _usuario = usuarioRepository.save(new Usuario(usuario));
       return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

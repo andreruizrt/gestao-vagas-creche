@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import br.edu.utfpr.pw.creche.model.Creche;
 import br.edu.utfpr.pw.creche.repository.CrecheRepository;
 
-//@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class CrecheController {
@@ -53,21 +54,7 @@ public class CrecheController {
     @PostMapping("/creche")
     public ResponseEntity<Creche> createCreche( @RequestBody Creche creche ) {
         try {
-			Creche createdCreche = crecheRepository.save( 
-                new Creche(
-                    creche.getNomeFantasia(),
-                    creche.getRazaoSocial(),
-                    creche.getCnpj(),
-                    creche.getTelefone(),
-                    creche.getEmail(),
-                    creche.getEndereco(),
-                    creche.getNumero(),
-                    creche.getBairro(),
-                    creche.getCidade(),
-                    creche.getEstado(),
-                    creche.getCep()
-                )
-            );
+			Creche createdCreche = crecheRepository.save(new Creche(creche));
 			
             return new ResponseEntity<>( createdCreche, HttpStatus.CREATED );
 		} catch ( Exception e ) {
