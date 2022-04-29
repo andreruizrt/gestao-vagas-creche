@@ -4,7 +4,7 @@
 
 ```
 usuario
-    idCliente int8 AUTO
+    id int8 AUTO
     username varchar NOT NULL
     password varchar NOT NULL
     email varchar NOT NULL
@@ -13,6 +13,15 @@ usuario
         'A' ADMINISTRADOR,
         'C' COMUM
     )
+
+responsavel
+    id_responsavel int8 AUTO
+    nome_completo varchar NOT NULL
+    telefone varchar NOT NULL
+    cpf varchar NOT NULL
+    rg varchar NOT NULL
+    url_foto varchar NOT NULL
+    id_usuario FK usuario.id NOT NULL
 ```
 
 # ENDPOINTS
@@ -56,10 +65,9 @@ PEGAR TODOS OS USUÁRIOS
 
 
 ## POST ##
+###### LOGIN
 
 > /api/login
-
-###### LOGIN
 
 ```
 REQUEST
