@@ -90,4 +90,14 @@ RESPONSE
     "tipo": "ADMINISTRADOR"
 }
 
+{
+  "expires": "2055-12-07T09:56:01.450Z",
+  "user": {
+        "email": "sample@example.com",
+        "image": "https://avatars2.githubusercontent.com/u/45228014?v=4",
+        "name": "Ejiro Asiuwhu",
+        "tipo": "ADMINISTRADOR"
+    }
+}
+
 ```
