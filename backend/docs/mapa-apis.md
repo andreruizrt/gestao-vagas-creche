@@ -83,12 +83,16 @@ Body {
 ```
 RESPONSE
 
+# modelo 1
+
 {
     "id": 1,
     "username": "teste1",
     "token": "DKWQKDEKFJJSCIAKLND#I#!EESKLDAJS",
     "tipo": "ADMINISTRADOR"
 }
+
+# modelo 2
 
 {
   "expires": "2055-12-07T09:56:01.450Z",
