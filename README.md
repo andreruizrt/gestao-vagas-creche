@@ -1,11 +1,11 @@
 # Gestão de Vagas em Creche - Projeto Integrador - UTFPR
 O PI é relacionado ao desenvolvimento de um novo sistema para gestão de vagas em creches.
 
-Requistos para entrega do projeto
+### Requistos para entrega do projeto:
 - [ ] Como **Administrador**, faço tudo no sistema, desejo acessar a página de administração, todas as rotas.
 	- [ ] Rotas de administração do sistema.
 	- [ ] Rota para cadastro de creches ( CRUD para creches ).
-	- [ ] Impedir que outros tipos de usuários acesse rotas de administração do site. 
+	- [ ] Impedir que outros tipos de usuários acessem rotas de administração do site. 
 - [ ] Como **Administrador**, posso cadastrar várias creches.
 - [ ] Como **Administrador**, posso gerar relatórios:
 	- [ ]  Vagas livres/ocupadas para todas as creches
@@ -17,14 +17,14 @@ Requistos para entrega do projeto
 - [ ] Como os **Pais de criança**, quero poder alterar meus dados na sistema.
 - [ ] Como os **Pais de criança**, quero poder cadastrar e gerenciar a vaga do meu filho.
 
-- CRITÉRIOS DE ACEITE
-	- Cada **Tipo de usuário** deve acessar uma página diferente.
-	- Cada **creche** deve estar associada a um bairro.
-	- O **site** deve permitir o envio da uma cópia do comprovante de endereço, que deve ser exigido.
-	- Cabe ao **Administrador** validar o endereço:
-		- O **Administrador** poder verificar se o endereço/bairro da criança confere com o do comprovante de residência.
-		- O **Administrador** poder verificar se o nome do bairro (ou código do bairro) está digitado corretamente.
-	- Os **Pais da criança** só poderão escolher uma creche de um bairro no qual a criança não mora, se não exitirem vagas para creches do mesmo 		bairro
+### CRITÉRIOS DE ACEITE:
+- Cada **Tipo de usuário** deve acessar uma página diferente.
+- Cada **creche** deve estar associada a um bairro.
+- O **site** deve permitir o envio da uma cópia do comprovante de endereço, que deve ser exigido.
+- Cabe ao **Administrador** validar o endereço:
+	- O **Administrador** poder verificar se o endereço/bairro da criança confere com o do comprovante de residência.
+	- O **Administrador** poder verificar se o nome do bairro (ou código do bairro) está digitado corretamente.
+- Os **Pais da criança** só poderão escolher uma creche de um bairro no qual a criança não mora, se não exitirem vagas para creches do mesmo 		bairro
 	
 
 
@@ -52,4 +52,4 @@ Requistos para entrega do projeto
  - Creche
 
 <img src="/docs/PI_Diagrama_BD.drawio-V01.png" alt="Diagrama banco"/>
-diagrama relacional - versão 0.1
+Diagrama relacional - versão 0.1
