@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 
 import { Box } from '@chakra-ui/react'
+import { SignInRequest } from '../services/auth';
+import { AuthContext } from '../contexts/authContext';
 
-import { userService } from '../services/user.service';
 
 function Home() {
   const [users, setUsers] = useState(null);
+  const { signIn } = useContext(AuthContext);
 
-  useEffect(() => {
-    userService.getAll().then(x => setUsers(x));
-  }, []);
+  async function handleSignIn(data) {
+    await signIn(data)
+  }
 
   return (
     <Box>

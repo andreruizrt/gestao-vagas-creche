@@ -1,42 +1,40 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
+import Router from 'next/router';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 
-import { userService } from '../services';
 import { Box, Button, Center, FormLabel, Heading, Input, Spinner } from '@chakra-ui/react';
 import CreshowIcon from '../components/Nav/CreshowIcon';
+import { AuthContext } from '../contexts/authContext';
+
 
 export default Login;
 
 function Login() {
-    const router = useRouter();
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         // redirect to home if already logged in
-        if (userService.userValue) {
-            router.push('/');
+        if (user) {
+            Router.push('/');
         }
     }, []);
 
-    // form validation rules 
-    const validationSchema = Yup.object().shape({
-        username: Yup.string().required('Usuario é obrigatório'),
-        password: Yup.string().required('Senha é obrigatória')
-    });
-    const formOptions = { resolver: yupResolver(validationSchema) };
+    // // form validation rules 
+    // const validationSchema = Yup.object().shape({
+    //     username: Yup.string().required('Usuario é obrigatório'),
+    //     password: Yup.string().required('Senha é obrigatória')
+    // });
+    // const formOptions = { resolver: yupResolver(validationSchema) };
 
     // get functions to build form with useForm() hook
-    const { register, handleSubmit, setError, formState } = useForm(formOptions);
+    const { register, handleSubmit, setError, formState } = useForm();
     const { errors } = formState;
 
-    function onSubmit({ username, password }) {
-        userService.login(username, password)
-            .then(() => {
+    async function onSubmit({ username, password }) {
+        await signIn(username, password).then(() => {
                 // get return url from query parameters or default to '/'
-                const returnUrl = router.query.returnUrl.toString() || '/';
-                router.push(returnUrl);
+                const returnUrl = Router.query.returnUrl.toString() || '/';
+                Router.push(returnUrl);
             })
             .catch(error => {
                 // setError('apiError', { message: error });

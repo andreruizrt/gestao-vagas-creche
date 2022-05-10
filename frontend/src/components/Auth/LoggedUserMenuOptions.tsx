@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-
+import { ReactNode, useContext } from "react";
 import {
     Avatar,
     Menu,
@@ -9,25 +8,32 @@ import {
     Link,
     MenuItem,
     useColorModeValue
-} from "@chakra-ui/react";
+  } from "@chakra-ui/react";
 
+import { AuthContext } from "../../contexts/authContext";
+  
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
+  
+const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) => {
+    return (
+        <Link
+          rounded={'md'}
+          _hover={{
+            textDecoration: 'none',
+            bg: useColorModeValue('blue.200', 'blue.700'),
+          }}
+          href={link}>
+          <MenuItem>
+            {children.toString ? children.toString() : children}
+          </MenuItem>
+        </Link>
+      );
+}    
 
-const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) => (
-    <Link
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('blue.200', 'blue.700'),
-      }}
-      href={link}>
-      <MenuItem>
-        {children.toString ? children.toString() : children}
-      </MenuItem>
-    </Link>
-  );
-
-const LoginCadastrarButtons = () => (
+const LoginCadastrarButtons = () => {
+  const { user } = useContext(AuthContext);
+  
+  return(
     <Menu>
         <MenuButton
             as={Button}
@@ -37,7 +43,7 @@ const LoginCadastrarButtons = () => (
             minW={0}>
             <Avatar
                 size={'sm'}
-                src={'https://images.unsplash.com/photo-1593642647962-b9f8d8f8d8f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'}
+                src={user.avatar_url}
             />
         </MenuButton>
         <MenuList>
@@ -46,6 +52,7 @@ const LoginCadastrarButtons = () => (
             ))}
         </MenuList>
     </Menu>
-);
+  );
+}
 
 export default LoginCadastrarButtons;
