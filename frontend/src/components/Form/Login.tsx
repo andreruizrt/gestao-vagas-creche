@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
-import { userService } from '../../services/user.service';
 import { Box, Button, Input } from '@chakra-ui/react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,13 +11,6 @@ export default Login;
 
 function Login() {
     const router = useRouter();
-
-    useEffect(() => {
-        // redirect to home if already logged in
-        if (userService.userValue) {
-            router.push('/');
-        }
-    }, []);
 
     // form validation rules 
     const validationSchema = Yup.object().shape({
@@ -31,17 +23,7 @@ function Login() {
     const { register, handleSubmit, setError, formState } = useForm(formOptions);
     const { errors } = formState;
 
-    function onSubmit({ username, password }) {
-        return userService.login(username, password)
-            .then(() => {
-                // get return url from query parameters or default to '/'
-                const returnUrl = router.query.returnUrl.toString() || '/';
-                router.push(returnUrl);
-            })
-            .catch(error => {
-                setError('apiError', { message: error });
-            });
-    }
+    function onSubmit({ username, password }) {}
 
     return (
         <Box className="col-md-6 offset-md-3 mt-5">

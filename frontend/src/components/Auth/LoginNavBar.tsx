@@ -1,25 +1,14 @@
 import { useState, useEffect } from 'react';
 
-import { userService } from '../../services';
-
 import LoggedUserMenuOptions from './LoggedUserMenuOptions';
 import LoginCadastrarButtons from './LoginCadatrarButtons';
 
 export default function LoginNavBar() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const subscription = userService.user.subscribe(x => setUser(x));
-    return () => subscription.unsubscribe();
-  }, []);
-
-  function logout() {
-    userService.logout();
-  }
-
+  const [isLogged, setIsLogged] = useState(false);
+  
   return (<>
     {
-      !user ? (
+      isLogged ? (
         <LoginCadastrarButtons />
       ) : (
         <LoggedUserMenuOptions />

@@ -9,8 +9,6 @@ import {
     MenuItem,
     useColorModeValue
   } from "@chakra-ui/react";
-
-import { AuthContext } from "../../contexts/authContext";
   
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
   
@@ -31,7 +29,6 @@ const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) 
 }    
 
 const LoginCadastrarButtons = () => {
-  const { user } = useContext(AuthContext);
   
   return(
     <Menu>
@@ -43,7 +40,6 @@ const LoginCadastrarButtons = () => {
             minW={0}>
             <Avatar
                 size={'sm'}
-                src={user.avatar_url}
             />
         </MenuButton>
         <MenuList>

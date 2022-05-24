@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Heading, Text, VStack } from '@chakra-ui/react'
 
 import Navbar from '../components/Nav/Navbar';
 
