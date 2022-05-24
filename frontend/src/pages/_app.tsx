@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { Box, ChakraProvider } from '@chakra-ui/react'
+import { Box, ChakraProvider } from '@chakra-ui/react';
 
-import theme from '../theme'
+import theme from '../theme';
+
+import { AuthProvider } from '../contexts/AuthContext';
 
 function App({ Component, pageProps }) {
-  const router = useRouter();
 
   return (
     <>
@@ -15,9 +16,9 @@ function App({ Component, pageProps }) {
       </Head>
       <Box>
         <ChakraProvider resetCSS theme={theme}>
-          <Box>
+          <AuthProvider>
             <Component {...pageProps} />
-          </Box>
+          </AuthProvider>
         </ChakraProvider>
       </Box>
 

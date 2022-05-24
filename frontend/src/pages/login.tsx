@@ -2,16 +2,22 @@ import { useForm } from 'react-hook-form';
 
 import { Box, Button, Center, FormLabel, Heading, Input, Spinner } from '@chakra-ui/react';
 import CreshowIcon from '../components/Nav/CreshowIcon';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 export default Login;
 
 function Login() {
-
+    
     const { register, handleSubmit, setError, formState } = useForm();
+    const { signIn } = useContext(AuthContext);
+    
     const { errors } = formState;
 
-    async function onSubmit({ username, password }) {}
+    async function handleSignIn(data) {
+        await signIn(data);
+    }
 
     return (
         <Box pt={'10vh'} mx={'36vw'} alignContent={'center'}>
@@ -21,7 +27,7 @@ function Login() {
                     <Center>
                         <Heading as={'h1'} size={'xl'} color={'white'}>Login</Heading>
                     </Center>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(handleSignIn)}>
                         <Box px={'8%'} py={'4%'}>
                             <FormLabel color={'whiteAlpha.900'}>Usuário:</FormLabel>
                             <Input name="username" type="text" {...register('username')} colorScheme={`${errors.username ? 'red' : ''}`} />
