@@ -7,13 +7,20 @@ import {
     MenuList,
     Link,
     MenuItem,
-    useColorModeValue
+    useColorModeValue,
+    Divider
   } from "@chakra-ui/react";
 import { AuthContext } from "../../contexts/AuthContext";
+
+type UserOptionType = {
+    link: string;
+    children: ReactNode;
+    action: () => void | null;
+}
   
-const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
+const UserOptions = [{ option: 'Perfil', link: "/profile" }];
   
-const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) => {
+const UserNavLink = ({ link, children, action }: { link: string, children: ReactNode, action: () => void | null}) => {
     return (
         <Link
           rounded={'md'}
@@ -22,7 +29,7 @@ const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) 
             bg: useColorModeValue('blue.200', 'blue.700'),
           }}
           href={link}>
-          <MenuItem>
+          <MenuItem onClick={action}>
             {children.toString ? children.toString() : children}
           </MenuItem>
         </Link>
@@ -30,7 +37,7 @@ const UserNavLink = ({ link, children }: { link: string, children: ReactNode }) 
 }    
 
 const LoginCadastrarButtons = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   
   return(
     <Menu>
@@ -47,8 +54,10 @@ const LoginCadastrarButtons = () => {
         </MenuButton>
         <MenuList>
             {UserOptions.map((option) => (
-                <UserNavLink key={option.option} link={option.link}>{option.option}</UserNavLink>
+                <UserNavLink key={option.option} link={option.link} action={null}>{option.option}</UserNavLink>
             ))}
+            <Divider />
+            <UserNavLink action={logout} link={'/'}>Sair</UserNavLink>
         </MenuList>
     </Menu>
   );

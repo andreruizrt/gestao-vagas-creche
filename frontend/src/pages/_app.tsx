@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import { Box, ChakraProvider } from '@chakra-ui/react';
 
@@ -15,11 +14,11 @@ function App({ Component, pageProps }) {
         <title>Creshow</title>
       </Head>
       <Box>
-        <ChakraProvider resetCSS theme={theme}>
-          <AuthProvider>
+        <AuthProvider>
+          <ChakraProvider resetCSS theme={theme}>
             <Component {...pageProps} />
-          </AuthProvider>
-        </ChakraProvider>
+          </ChakraProvider>
+        </AuthProvider>
       </Box>
 
     </>

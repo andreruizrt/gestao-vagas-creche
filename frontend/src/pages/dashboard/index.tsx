@@ -1,5 +1,5 @@
-import { Box, Heading } from '@chakra-ui/react'
-import { useContext } from 'react'
+import { Box, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import { useContext, useState } from 'react'
 
 import Navbar from '../../components/Nav/Navbar'
 import { AuthContext } from '../../contexts/AuthContext'
@@ -10,8 +10,13 @@ const Index = () => {
   return (
     <Box>
       <Navbar />
-      Olá, { user.name }
-      <Heading>Dashboard</Heading>
+      <Box p={3}>
+        <Heading color={'yellow.500'}>Dashboard { user ? 'do ' + user.name : null } </Heading>
+        <Text>Aqui aparecerão as informações sobre a criança matriculada</Text>
+      </Box>
+      <VStack>
+        
+      </VStack>
     </Box>
   )
 }
