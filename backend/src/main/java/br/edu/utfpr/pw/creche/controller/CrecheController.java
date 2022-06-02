@@ -21,7 +21,7 @@ public class CrecheController {
     @Autowired
     private CrecheRepository crecheRepository;
 
-    @GetMapping("/creches")
+    @GetMapping("/creche")
     public ResponseEntity<List<Creche>> getAllCreches(@RequestParam(required = false) String nomeFantasia) {
         try {
 
@@ -87,7 +87,7 @@ public class CrecheController {
 		}
 	}
 
-    @DeleteMapping("/creches")
+    @DeleteMapping("/creche")
     public ResponseEntity<HttpStatus> deleteAllCreches() {
 
         try {
