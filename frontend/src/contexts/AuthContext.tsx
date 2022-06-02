@@ -36,8 +36,8 @@ export function AuthProvider({ children }) {
         const { 'nextauth.token': token } = parseCookies();
 
         if (token) {
-            recoverUserInformation().then(response => {
-                setUser(response.user);
+            recoverUserInformation(token).then(response => {
+                setUser(response);
             });
         }
     }, []);
