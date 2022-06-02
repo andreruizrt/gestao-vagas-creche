@@ -95,7 +95,7 @@ export const getServerSideProps = async () => {
   console.log("Fethcing data from server side...");
 
   try {
-    const response = await fetch("http://localhost:8080/api/usuarios");
+    const response = await fetch("http://localhost:8080/api/users");
     const json = await response.json();
 
     return {
@@ -113,7 +113,7 @@ export const getServerSideProps = async () => {
 
 const deleteAllUsers = async (id: Number | undefined) => {
   id ? console.log(id) : console.log("No ID");
-  const url = id ? `http://localhost:8080/api/usuarios/${id}` : `http://localhost:8080/api/usuarios`;
+  const url = id ? `http://localhost:8080/api/users/${id}` : `http://localhost:8080/api/users`;
 
   try {
     const response = await fetch(url, {
@@ -128,7 +128,7 @@ const deleteAllUsers = async (id: Number | undefined) => {
 }
 
 const updateUserById = async () => {
-  const response = await fetch('http://localhost:3000/usuarios/1', {
+  const response = await fetch('http://localhost:8080/api/users/1', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
