@@ -29,21 +29,21 @@ import Navbar from '../../../components/Nav/Navbar'
 //     cep;
 //     qtdVagas
 
-const Creches = ({ creches }) => {
-    const crecheList = creches.map(creche => {
-        return <Tr key={creche.id}>
-            <Td><Checkbox id='checkbox-creche' /></Td>
-            <Td>{creche.nomeFantasia}</Td>
-            <Td>{creche.razaoSocial}</Td>
-            <Td>{creche.cnpj}</Td>
-            <Td>{creche.telefone}</Td>
-            <Td>{creche.email}</Td>
-            <Td>{creche.endereco + " Nº" + creche.numero}</Td>
-            <Td>{creche.bairro}</Td>
-            <Td>{creche.cidade}</Td>
-            <Td>{creche.estado}</Td>
-            <Td>{creche.cep}</Td>
-            <Td>{creche.qtdVagas}</Td>
+const Responsaveis = ({ responsaveis }) => {
+    const responsaveisList = responsaveis.map(responsaveis => {
+        return <Tr key={responsaveis.id}>
+            <Td><Checkbox id='checkbox-responsaveis' /></Td>
+            <Td>{responsaveis.nomeFantasia}</Td>
+            <Td>{responsaveis.razaoSocial}</Td>
+            <Td>{responsaveis.cnpj}</Td>
+            <Td>{responsaveis.telefone}</Td>
+            <Td>{responsaveis.email}</Td>
+            <Td>{responsaveis.endereco + " Nº" + responsaveis.numero}</Td>
+            <Td>{responsaveis.bairro}</Td>
+            <Td>{responsaveis.cidade}</Td>
+            <Td>{responsaveis.estado}</Td>
+            <Td>{responsaveis.cep}</Td>
+            <Td>{responsaveis.qtdVagas}</Td>
         </Tr>
     });
 
@@ -52,7 +52,7 @@ const Creches = ({ creches }) => {
             <Navbar />
             <Box m={10}>
                 <Center>
-                    <Heading size={'sm'}>Controle de Creches</Heading>
+                    <Heading size={'sm'}>Controle de Responsaveis</Heading>
                 </Center>
             </Box>
             <Box>
@@ -65,7 +65,7 @@ const Creches = ({ creches }) => {
                     </Box>
                     <Spacer />
                     <Box mx={5}>
-                        <Button id={"btn-delete"} colorScheme="red" onClick={selecionaCreche}>Deletar todos</Button>
+                        <Button id={"btn-delete"} colorScheme="red" onClick={selecionaResponsaveis}>Deletar todos</Button>
                     </Box>
                 </Flex>
             </Box>
@@ -95,7 +95,7 @@ const Creches = ({ creches }) => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {crecheList}
+                        {responsaveisList}
                     </Tbody>
                 </Table>
             </Box>
@@ -103,16 +103,16 @@ const Creches = ({ creches }) => {
     )
 }
 
-function selecionaCreche() {
+function selecionaResponsaveis() {
     // const [deleteState, onStateChange] = useState();
 
-    const creche = document.getElementById('checkbox-creche');
-    if (creche) {
-        creche.addEventListener('click', () => {
-            const crecheId = document.getElementById('creche-id').innerHTML;
-            document.getElementById('btn-delete').innerHTML = `Deletar ${crecheId}`;
-            console.log(crecheId);
-            deleteAllCreches(Number.parseInt(crecheId));
+    const responsaveis = document.getElementById('checkbox-responsaveis');
+    if (responsaveis) {
+        responsaveis.addEventListener('click', () => {
+            const responsaveisId = document.getElementById('responsaveis-id').innerHTML;
+            document.getElementById('btn-delete').innerHTML = `Deletar ${responsaveisId}`;
+            console.log(responsaveisId);
+            deleteAllResponsaveis(Number.parseInt(responsaveisId));
         });
     }
 }
@@ -122,25 +122,25 @@ export const getServerSideProps = async () => {
     console.log("Fethcing data from server side...");
 
     try {
-        const response = await fetch("http://localhost:8080/api/creche");
+        const response = await fetch("http://localhost:8080/api/responsaveis");
         const json = await response.json();
 
         return {
             props: {
-                creches: json
+                responsaveis: json
             }
         }
 
     } catch (error) {
         console.log(error);
-        return { props: { creches: [] } }
+        return { props: { responsaveis: [] } }
     }
 };
 
 
-const deleteAllCreches = async (id: Number | undefined) => {
+const deleteAllResponsaveis = async (id: Number | undefined) => {
     id ? console.log(id) : console.log("No ID");
-    const url = id ? `http://localhost:8080/api/creche/${id}` : `http://localhost:8080/api/creche`;
+    const url = id ? `http://localhost:8080/api/responsaveis/${id}` : `http://localhost:8080/api/responsaveis`;
 
     try {
         const response = await fetch(url, {
@@ -154,8 +154,8 @@ const deleteAllCreches = async (id: Number | undefined) => {
     };
 }
 
-const updateCrecheById = async () => {
-    const response = await fetch('http://localhost:8080/api/creche/1', {
+const updateResponsaveisById = async () => {
+    const response = await fetch('http://localhost:8080/api/responsaveis/1', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -169,4 +169,4 @@ const updateCrecheById = async () => {
     });
 };
 
-export default Creches;
+export default Responsaveis;
