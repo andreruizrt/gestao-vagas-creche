@@ -15,35 +15,30 @@ import {
 } from '@chakra-ui/react'
 
 import Navbar from '../../../components/Nav/Navbar'
+import MaskApplier from '../../../modifiers/MaskApplier';
 
-//     nomeFantasia;
-//     razaoSocial;
-//     cnpj;
-//     telefone;
-//     email;
-//     endereco;
-//     numero;
-//     bairro;
-//     cidade;
-//     estado;
-//     cep;
-//     qtdVagas
+// id
+// idUsuario
+// nome
+// cpf
+// rg
+// email
+// telefone
+// url
+// urlFoto
 
 const Responsaveis = ({ responsaveis }) => {
     const responsaveisList = responsaveis.map(responsaveis => {
         return <Tr key={responsaveis.id}>
             <Td><Checkbox id='checkbox-responsaveis' /></Td>
-            <Td>{responsaveis.nomeFantasia}</Td>
-            <Td>{responsaveis.razaoSocial}</Td>
-            <Td>{responsaveis.cnpj}</Td>
-            <Td>{responsaveis.telefone}</Td>
+            <Td>{responsaveis.idUsuario}</Td>
+            <Td>{responsaveis.nome}</Td>
+            <Td>{MaskApplier().cpfMask(responsaveis.cpf)}</Td>
+            <Td>{responsaveis.rg}</Td>
             <Td>{responsaveis.email}</Td>
-            <Td>{responsaveis.endereco + " Nº" + responsaveis.numero}</Td>
-            <Td>{responsaveis.bairro}</Td>
-            <Td>{responsaveis.cidade}</Td>
-            <Td>{responsaveis.estado}</Td>
-            <Td>{responsaveis.cep}</Td>
-            <Td>{responsaveis.qtdVagas}</Td>
+            <Td>{MaskApplier().telefoneMask(responsaveis.telefone)}</Td>
+            <Td>{responsaveis.urlFoto}</Td>
+            <Td>{responsaveis.url}</Td>
         </Tr>
     });
 
@@ -81,17 +76,14 @@ const Responsaveis = ({ responsaveis }) => {
                     <Thead>
                         <Tr>
                             <Th>/</Th>
-                            <Th>Nome Fantasia</Th>
-                            <Th>Razão Social</Th>
-                            <Th>Cnpj</Th>
-                            <Th>Telefone</Th>
+                            <Th>idUsuario</Th>
+                            <Th>nome</Th>
+                            <Th>cpf</Th>
+                            <Th>rg</Th>
                             <Th>Email</Th>
-                            <Th>Endereco</Th>
-                            <Th>Bairro</Th>
-                            <Th>Cidade</Th>
-                            <Th>Estado</Th>
-                            <Th>CEP</Th>
-                            <Th>Número Vagas</Th>
+                            <Th>Telefone</Th>
+                            <Th>urlFoto</Th>
+                            <Th>url</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
