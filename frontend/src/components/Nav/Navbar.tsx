@@ -19,7 +19,7 @@ import CreshowIcon from './CreshowIcon';
 import LoginNavBar from '../Auth/LoginNavBar';
 import { UserNavLink } from '../Auth/LoginHamburger';
 
-const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Área dos Pais', link: "/pais" }, { option: 'Sobre nós', link: "/about" }];
+const NavBarOptions = [{ option: 'Dashboard', link: "/dashboard" }, { option: 'Área dos Pais', link: "/area-dos-pais" }, { option: 'Sobre nós', link: "/sobre" }];
 const UserOptions = [{ option: 'Perfil', link: "/dashboard" }, { option: 'Sair', link: "/dashboard" }];
 
 
